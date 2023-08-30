@@ -9,7 +9,9 @@ public class Main
 //        System.out.println(Test.startTesting(Test.test3));
 //        System.out.println(Test.startTesting(Test.test4));
 //        System.out.println(Test.startTesting(Test.test5));
-        System.out.println(Test.startTesting(Test.test6));
+//        System.out.println(Test.startTesting(Test.test6));
 //        System.out.println(Test.startTesting(Test.test7));
+//        System.out.println(Test.startTesting(Test.test8));
+
     }
 }
