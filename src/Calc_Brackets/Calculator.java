@@ -12,16 +12,22 @@ public class Calculator
         list.clear();
     }
 
-    public static long startCalculation(String numericExpression)
+    public static String startCalculation(String numericExpression)
     {
         doListStringBuffer(numericExpression);
         if (list.isEmpty())
         {
-            System.out.println("Have a letter");
+            return "Have a letter";
         }
         brackets(list);
-
-        return Long.parseLong(String.valueOf(list.get(0)));
+        if (list.isEmpty())
+        {
+            return "can't divide by zero";
+        }
+        else
+        {
+            return String.valueOf(list.get(0));
+        }
     }
 
     private static void doListStringBuffer(String str)
@@ -31,7 +37,7 @@ public class Calculator
         int count = 0;
         for (int i = 0; i < str.length(); i++)
         {
-            if (str.charAt(i) == '.' || Character.isLetter(str.charAt(i)))
+            if (str.charAt(i) == '.')
             {
                 break;
             }
@@ -67,6 +73,10 @@ public class Calculator
 
         while (list.size() != 1)
         {
+            if (list.size() == 0)
+            {
+                break;
+            }
             for (int i = 0; i < list.size(); i++)
             {
                 if (list.get(i).charAt(0) == ')')
@@ -96,7 +106,7 @@ public class Calculator
 
     public static void calculation(List<StringBuffer> list)
     {
-        if (list.get(0).charAt(0) == '-')
+        if (list.get(0).charAt(0) == '-' && Character.isDigit(list.get(1).charAt(0)))
         {
             list.get(1).replace(0, Integer.MAX_VALUE, String.valueOf(Long.parseLong(String.valueOf(list.get(1))) * (-1)));
             list.remove(0);
@@ -104,6 +114,10 @@ public class Calculator
 
         while (list.size() != 1)
         {
+            if (list.size() == 0)
+            {
+                break;
+            }
             for (int i = 2; i < list.size(); i += 2)
             {
                 long num1 = Long.parseLong(String.valueOf(list.get(i - 2)));
@@ -115,6 +129,11 @@ public class Calculator
                 }
                 else if (list.get(i - 1).charAt(0) == '/')
                 {
+                    if (num2 == 0)
+                    {
+                        clear();
+                        break;
+                    }
                     list.get(i - 1).replace(0, 1, String.valueOf(num1 / num2));
                 }
                 else if (i == list.size() - 1)
