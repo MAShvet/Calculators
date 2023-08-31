@@ -3,4 +3,6 @@
 /workspace.xml
 .idea/*
 Calculators.iml
-.xml
+misc.xml
+modules.xml
+vcs.xml
