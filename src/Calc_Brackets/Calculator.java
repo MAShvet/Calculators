@@ -96,6 +96,12 @@ public class Calculator
 
     public static void calculation(List<StringBuffer> list)
     {
+        if (list.get(0).charAt(0) == '-')
+        {
+            list.get(1).replace(0, Integer.MAX_VALUE, String.valueOf(Long.parseLong(String.valueOf(list.get(1))) * (-1)));
+            list.remove(0);
+        }
+
         while (list.size() != 1)
         {
             for (int i = 2; i < list.size(); i += 2)
@@ -106,6 +112,10 @@ public class Calculator
                 if (list.get(i - 1).charAt(0) == '*')
                 {
                     list.get(i - 1).replace(0, 1, String.valueOf(num1 * num2));
+                }
+                else if (list.get(i - 1).charAt(0) == '/')
+                {
+                    list.get(i - 1).replace(0, 1, String.valueOf(num1 / num2));
                 }
                 else if (i == list.size() - 1)
                 {
